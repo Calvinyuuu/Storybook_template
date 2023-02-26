@@ -2,7 +2,7 @@ import PropTypes from "prop-types"
 
 //incoming props with default values
 export default function Stack({ children, spacing = 2, direction = "row", wrap = false }) {
-  //determine custom styling
+  //determine custom css styling
   const style = {
     display: "flex",
     gap: `${spacing * 0.25}rem`,
