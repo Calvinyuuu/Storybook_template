@@ -1,27 +1,55 @@
-import PropTypes from "prop-types"
-
-export default function Button({ label, backgroundColor = "red", size = "md", onClick }) {
-  //determine size of the button
-  let scale = 1
-  if (size === "sm") scale = 0.75
-  if (size === "lg") scale = 1.5
-
-  //create custom css styles from props
-  const style = {
-    backgroundColor,
-    padding: `${scale * 0.5}rem ${scale * 1}rem`,
-    border: "none",
+export default function Button({theme}) {
+  switch (theme){
+    case "contained":
+      return <Contained/>
+    case "outlined":
+      return <Outlined/>
+    default:
+      return <Default/>;
   }
-  //return component with action, style, and labels
+}
+
+export function Default(){
+   const style = {
+    padding: `${1.5}rem ${1.5}rem`,
+    border: "none",
+    backgroundColor: "transparent",
+  }
   return (
-    <button onClick={onClick} style={style}>
-      {label}
-    </button>
+    <button style={style}>Default</button>
   )
 }
 
-Button.propTypes = {
-  label: PropTypes.string,
-  backgroundColor: PropTypes.string,
-  size: PropTypes.oneOf(["sm", "md", "lg"]),
+export function Contained(){
+  const style = {
+    margin: 0, 
+    padding: 0,
+    textAlign: "center",
+    border: "2px solid #7FF2F8",
+    backgroundColor: "#7FF2F8",
+    height: "40px",
+    width: "100px",
+    fontSize: "1.3em",
+    borderRadius: "10%",
+  }
+ return (
+   <button style={style}>Contained</button>
+ )
+}
+
+export function Outlined(){
+  const style = {
+   margin: 0, 
+   padding: 0,
+   textAlign: "center",
+   border: "2px solid #7FF2F8",
+   backgroundColor: "transparent",
+   height: "40px",
+   width: "100px",
+   fontSize: "1.3em",
+   borderRadius: "10%",
+ }
+ return (
+   <button style={style}>Outlined</button>
+ )
 }
